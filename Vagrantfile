@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
     cpu_num = ENV.has_key?('SRV_CPU_NUM') ? ENV['SRV_CPU_NUM'] : 2
     mem_lim = ENV.has_key?('SRV_MEM_LIM') ? ENV['SRV_MEM_LIM'] : 1536
   
-    (1..1).each do |i|
+    (1..2).each do |i|
       config.vm.define "server_#{i}" do |server|
         server.vm.box = "ubuntu/focal64"
         server.vm.provider "virtualbox" do |v|
@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
         ], type: "virtualbox"
         server.vm.provision :shell, inline: "sudo chmod +x /home/vagrant/host/docker-install.sh && sudo bash /home/vagrant/host/docker-install.sh -y"
         server.vm.provision :shell, inline: "cd /home/vagrant/host/docker-ed &&docker build -t app . && docker image ls -a"
-        server.vm.provision :shell, inline: "docker run -d --rm -p 2000:8000 --name app app"
+        #server.vm.provision :shell, inline: "docker run -d --rm -p 2000:8000 --name app app"
         server.vm.provider "virtualbox" do |v|
           v.memory = mem_lim
           v.cpus = cpu_num
