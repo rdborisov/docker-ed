@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/host":{"disabled":false,"guestpath":"/home/vagrant/host","hostpath":"C:/Users/Admin/Downloads/vagrant_and_loadTesting-master/server","mount_options":["dmode=777","fmode=777","uid=1000","gid=1000","_netdev"],"type":"virtualbox","__vagrantfile":true}}}
