@@ -12,6 +12,8 @@ services:
     image: redis:alpine
     networks:
       - back
+
 networks:
   back:
     driver: overlay
+    attachable: true

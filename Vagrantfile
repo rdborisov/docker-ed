@@ -17,8 +17,8 @@ Vagrant.configure("2") do |config|
           "dmode=777","fmode=777"
         ], type: "virtualbox"
         server.vm.provision :shell, inline: "sudo chmod +x /home/vagrant/host/docker-install.sh && sudo bash /home/vagrant/host/docker-install.sh -y"
-        server.vm.provision :shell, inline: "cd /home/vagrant/host/docker-ed &&docker build -t app . && docker image ls -a"
-        #server.vm.provision :shell, inline: "docker run -d --rm -p 2000:8000 --name app app"
+        server.vm.provision :shell, inline: "cd /home/vagrant/host/docker-ed && docker build -t app . && docker image ls -a"
+        server.vm.provision :shell, inline: "sudo docker swarm init --advertise-addr 192.168.99.101 && sudo docker stack deploy --compose-file /home/vagrant/host/compose.yml app"
         server.vm.provider "virtualbox" do |v|
           v.memory = mem_lim
           v.cpus = cpu_num
