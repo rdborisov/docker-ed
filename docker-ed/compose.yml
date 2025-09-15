@@ -1,0 +1,17 @@
+services:
+  web:
+     image: app
+     ports:
+      - 8000:8000
+     networks:
+      - back
+     deploy:
+      mode: replicated
+      replicas: 2
+  redis:
+    image: redis:alpine
+    networks:
+      - back
+networks:
+  back:
+    driver: overlay
